@@ -2,13 +2,31 @@
 @section('content')
     <section>
         <main id="main">
-            <div class="container py-lg-5 col-4">
-                <div class="text-center">
-                    <h3><label for="" id="clock"></label></h3>
-                    <a class="p-5" href="/cekin"><button class="btn btn-success">Check In</button></a>
-                    <a class="p-5" href="/cekout"><button class="btn btn-warning">Check Out</button></a>
-                    <a href="/logout"><button class="btn btn-sm btn-danger">Logout</button></a>
-
+            <div class="container-scroller">
+                <div class="container-fluid page-body-wrapper full-page-wrapper">
+                    <div class="content-wrapper d-flex align-items-center auth px-0">
+                        <div class="row w-100 mx-0">
+                            <div class="col-lg-4 mx-auto">
+                                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                                    <div class="brand-logo">
+                                        {{-- <img src="{{ asset('dashboard') }}/images/logo.svg" alt="logo"> --}}
+                                    </div>
+                                    <h4>Hello! Halaman Absen</h4>
+                                    <h6 class="font-weight-light">Silahkan Absen!</h6>
+                                    <div class="mt-2">
+                                        <a href="cekin">
+                                            <button class="btn btn-sm mb-3 btn-primary col col-12">Absen</button>
+                                        </a>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="/logout">
+                                            <button class="btn btn-sm mb-3 btn-primary col col-12">Logout</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

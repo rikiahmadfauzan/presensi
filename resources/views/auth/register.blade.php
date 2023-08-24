@@ -33,11 +33,19 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form class="pt-3" action="/proseslogin" method="post">
+                            <form class="pt-3" action="/create/register" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="nik" value="{{ old('nik') }}"  class="form-control form-control-lg"
+                                    <input type="text" name="nik"  class="form-control form-control-lg"
                                         id="nik" placeholder="Nik">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="name"  class="form-control form-control-lg"
+                                        id="name" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email"  class="form-control form-control-lg"
+                                        id="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" class="form-control form-control-lg"
@@ -45,11 +53,11 @@
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-sm mb-3 btn-primary col col-12">SIGN
-                                        IN</button>
+                                        UP</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="/register" class="text-primary">Create</a>
-                                </div>
+                                    Already have an account? <a href="/login" class="text-decoration-none">Login</a>
+                                  </div>
                             </form>
                         </div>
                     </div>

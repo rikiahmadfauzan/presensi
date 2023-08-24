@@ -2,38 +2,43 @@
 @section('content')
     <section>
         <main id="main">
-            <div class="row" style="margin-top: 70px">
-                <div class="col">
-                    <input type="hidden" name="" id="lokasi">
-                    <div class="webcam-capture"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button id="takeabsen" class="btn btn-primary btn-block">Absen Masuk</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div id="map"></div>
+            <div class="container-scroller">
+                <div class="container-fluid page-body-wrapper full-page-wrapper">
+                    <div class="content-wrapper d-flex align-items-center auth px-0">
+                        <div class="row w-100 mx-0">
+                            <div class="col-lg-4 mx-auto">
+                                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                                    <div class="brand-logo">
+                                        {{-- <img src="{{ asset('dashboard') }}/images/logo.svg" alt="logo"> --}}
+                                    </div>
+                                    <h4>Hello! Halaman Absen</h4>
+                                    <h6 class="font-weight-light">Silahkan Absen!</h6>
+                                    <div class="row" style="margin-top: 70px">
+                                        <div class="col">
+                                            <input type="hidden" name="" id="lokasi">
+                                            <div class="webcam-capture"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        @if ($cek > 0)
+                                            <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
+                                                Keluar</button>
+                                        @else
+                                            <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen
+                                                Masuk</button>
+                                        @endif
+                                    </div>
+                                    <div class="mt-1" id="map"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </section>
     <style>
-        .webcam-capture,
-        .webcam-capture video {
-            display: inline-block;
-            width: 100% !important;
-            margin: auto;
-            height: auto !important;
-            border-radius: 15px;
 
-        }
-
-        #map {
-            height: 200px;
-        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -86,11 +91,22 @@
                     lokasi: lokasi
                 },
                 cache: false,
-                success:function(respond){
-                    if(respond == 0 ){
-                        alert('success');
-                    }else{
-                        alert('error');
+                success: function(respond) {
+                    var status = respond.split("|")
+                    if (status[0] == "success") {
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: status[1],
+                            icon: 'success',
+                        });
+                        setTimeout("location.href='/home'", 2000);
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Maaf Gagal Absen',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
                     }
                 }
             });

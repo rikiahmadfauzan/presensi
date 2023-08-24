@@ -16,7 +16,10 @@ class PresensiContoller extends Controller
         return view('pegawai.pegawai');
     }
     function showCekin(){
-        return view('pegawai.checkin');
+        $hariini = date("Y-m-d");
+        $nik = Auth::user()->nik;
+        $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
+        return view('pegawai.checkin', compact('cek'));
     }
     function showCekout(){
         return view('pegawai.checkout');
@@ -57,6 +60,7 @@ class PresensiContoller extends Controller
     //     return redirect('menu');
     //  }
 
+
     public function store(Request $request){
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
@@ -64,26 +68,51 @@ class PresensiContoller extends Controller
         $localtime = $date->format('H:i:s');
         $nik = Auth::user()->nik;
         $lokasi = $request->lokasi;
+
+        $cek = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->count();
+
+        if($cek >0){
+            $ket ="out";
+        }else{
+            $ket = "in";
+        }
         $image = $request->image;
         $folderPath = "public/evidence/";
         $image_parts = explode(";base64", $image);
         $image_base64 = base64_decode($image_parts[1]);
-        $formatName = $nik . "-" .$tgl;
+        $formatName = $nik . "-" .$tgl . "-" . $ket;
         $fileName = $formatName . ".png";
         $file = $folderPath .$fileName;
-        $data = [
-            'nik' => $nik,
-            'tgl' => $tgl,
-            'jam_in' => $localtime,
-            'foto_in' => $fileName,
-            'lokasi_in' => $lokasi
-        ];
-        $simpan = DB::table('presensi')->insert($data);
-        if($simpan){
-            echo 0;
-            Storage::put($file, $image_base64);
+        if($cek > 0){
+            $data_pulang = [
+                'jam_out' => $localtime,
+                'foto_out' => $fileName,
+                'lokasi_out' => $lokasi
+            ];
+            $update = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->update($data_pulang);
+            if($update){
+                echo "success|Terimkasih, Hati-Hati Di Jalan|out";
+                Storage::put($file, $image_base64);
+            }else{
+                echo "error|Maaf Absen Gagal|out";
+            }
         }else{
-            echo 1;
+            $data = [
+                'nik' => $nik,
+                'tgl' => $tgl,
+                'jam_in' => $localtime,
+                'foto_in' => $fileName,
+                'lokasi_in' => $lokasi
+            ];
+
+            $simpan = DB::table('presensi')->insert($data);
+            if($simpan){
+                echo "success|Selamat Bekerja|in";
+                Storage::put($file, $image_base64);
+            }else{
+                echo "error|Maaf Absen Gagal|in";
+            }
         }
+
     }
 }

@@ -22,9 +22,12 @@ Route::get('/', function () {
 
 Route::middleware(['guest'])->group(function (){
     Route::get('/login', [AuthController::class, 'show'])->name('login');
+Route::get('/register', [AuthController::class, 'showReg']);
+
 });
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/proseslogin', [AuthController::class, 'proseslogin']);
+Route::post('/create/register', [AuthController::class, 'create']);
     // pegawai
 
 // route::post('/createPegawai', [PresensiContoller::class, 'createPegawai']);
@@ -34,6 +37,6 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/cekout', [PresensiContoller::class, 'showCekout']);
     Route::get('/home', [PresensiContoller::class, 'show']);
 });
-Route::post('/presensi/store', [PresensiContoller::class, 'store']);
 
+Route::post('/presensi/store', [PresensiContoller::class, 'store']);
 

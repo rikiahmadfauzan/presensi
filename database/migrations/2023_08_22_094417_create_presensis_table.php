@@ -18,9 +18,9 @@ return new class extends Migration
             $table->time('jam_in');
             $table->time('jam_out')->nullable();
             $table->text('foto_in');
-            $table->text('foto_out');
+            $table->text('foto_out')->nullable();
             $table->text('lokasi_in');
-            $table->text('lokasi_out');
+            $table->text('lokasi_out')->nullable();
             $table->timestamps();
             $table->foreign('nik')->references('nik')->on('users')->onDelete('cascade')->onUpdate('cascade');
 

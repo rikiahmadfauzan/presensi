@@ -21,7 +21,15 @@
     <script src="{{ asset('assets/js/jam.js') }}"></script>
     <script src="{{ asset('assets/js/webcam.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js" integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {{-- majestic --}}
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/style.css">
+    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/favicon.png" />
 </head>
+</head>
+
 
 <body onload="realtimeClock()">
 
@@ -74,8 +82,14 @@
     <script src="{{ asset('dashboard') }}/js/hoverable-collapse.js"></script>
     <script src="{{ asset('dashboard') }}/js/template.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
     @stack('script')
+        {{-- majestic --}}
+    <script src="{{ asset('dashboard') }}/vendors/base/vendor.bundle.base.js"></script>
+    <script src="{{ asset('dashboard') }}/js/off-canvas.js"></script>
+    <script src="{{ asset('dashboard') }}/js/hoverable-collapse.js"></script>
+    <script src="{{ asset('dashboard') }}/js/template.js"></script>
+    <script src="{{ asset('assets') }}/js/scripts.js"></script>
+
 </body>
 
 </html>

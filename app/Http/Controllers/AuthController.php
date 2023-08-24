@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Guard;
+use App\Models\User;
+
 
 class AuthController extends Controller
 {
     function show(){
         return view('auth.login');
+    }
+    function showReg(){
+        return view('auth.register');
     }
 
     public function proseslogin(Request $request){
@@ -36,10 +41,24 @@ class AuthController extends Controller
     }
     return redirect()->back();
 
-}
-function logout(){
-    Auth::logout();
-    return redirect('/login');
- }
+    }
+    function logout(){
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    function create(Request $req){
+        User::create([
+            'id' => $req->id,
+            'nik' => $req->nik,
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => $req->password
+
+        ]);
+
+        return redirect('/login');
+    }
+
 
 }
