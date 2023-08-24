@@ -11,8 +11,6 @@
                                     <div class="brand-logo">
                                         {{-- <img src="{{ asset('dashboard') }}/images/logo.svg" alt="logo"> --}}
                                     </div>
-                                    <h4>Hello! Halaman Absen</h4>
-                                    <h6 class="font-weight-light">Silahkan Absen!</h6>
                                     <div class="mt-2">
                                         <a href="cekin">
                                             <button class="btn btn-sm mb-3 btn-primary col col-12">Absen</button>
