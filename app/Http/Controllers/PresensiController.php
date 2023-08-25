@@ -6,14 +6,17 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
 use App\Models\Presensi;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class PresensiContoller extends Controller
+class PresensiController extends Controller
 {
     function show(){
-        return view('pegawai.pegawai');
+        $nik = Auth::user()->nik;
+        $data['presensi'] = Presensi::all()->where('nik', $nik);
+        return view('pegawai.pegawai', $data);
     }
     function showCekin(){
         $hariini = date("Y-m-d");
@@ -21,9 +24,7 @@ class PresensiContoller extends Controller
         $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
         return view('pegawai.checkin', compact('cek'));
     }
-    function showCekout(){
-        return view('pegawai.checkout');
-    }
+
     // function createPegawai(Request $req){
     //     $timezone = 'Asia/Jakarta';
     //     $date = new DateTime('now', new DateTimeZone($timezone));
@@ -67,6 +68,7 @@ class PresensiContoller extends Controller
         $tgl = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
         $nik = Auth::user()->nik;
+        $name = Auth::user()->name;
         $lokasi = $request->lokasi;
 
         $cek = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->count();
@@ -98,6 +100,7 @@ class PresensiContoller extends Controller
             }
         }else{
             $data = [
+                'name' => $name,
                 'nik' => $nik,
                 'tgl' => $tgl,
                 'jam_in' => $localtime,

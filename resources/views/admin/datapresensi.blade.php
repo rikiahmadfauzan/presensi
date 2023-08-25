@@ -4,24 +4,6 @@
         <main id="main">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body dashboard-tabs p-0">
-                                <div class="container">
-                                    <div class="text-center py-2">
-                                        <h3><label for="" id="clock"></label></h3>
-                                    </div>
-                                    <div class="mt-0 py-0">
-                                        <a href="/absen">
-                                            <button class="btn btn-sm mb-3 btn-primary col col-12">Absen</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12 stretch-card">
                         <div class="card">
                             <div class="card-body">
@@ -30,7 +12,7 @@
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
                                             <tr>
-                                                {{-- <th>Nama</th> --}}
+                                                <th>Nama</th>
                                                 <th>Nik</th>
                                                 <th>Tanggal</th>
                                                 <th>Check In</th>
@@ -42,7 +24,7 @@
                                         @foreach ($presensi as $item)
                                         <tbody>
                                             <tr>
-                                                {{-- <td>{{ $user->name }}</td> --}}
+                                                <td>{{ $item->name  }}</td>
                                                 <td>{{ $item->nik }}</td>
                                                 <td>{{ $item->tgl }}</td>
                                                 <td>{{ $item->jam_in }}</td>

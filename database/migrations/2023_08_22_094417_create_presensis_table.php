@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('presensi', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('nik');
             $table->date('tgl');
             $table->time('jam_in');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->text('lokasi_out')->nullable();
             $table->timestamps();
             $table->foreign('nik')->references('nik')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('name')->references('name')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

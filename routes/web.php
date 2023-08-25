@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PresensiContoller;
+use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\Configuration\Group;
 
@@ -28,15 +29,19 @@ Route::get('/register', [AuthController::class, 'showReg']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/proseslogin', [AuthController::class, 'proseslogin']);
 Route::post('/create/register', [AuthController::class, 'create']);
-    // pegawai
+    // Admin
+Route::get('/admin', [AdminController::class, 'showAdmin']);
+Route::get('/layouts', [AdminController::class, 'layouts']);
 
-// route::post('/createPegawai', [PresensiContoller::class, 'createPegawai']);
+
+// route::post('/createPegawai', [PresensiController::class, 'createPegawai']);
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/cekin', [PresensiContoller::class, 'showCekin']);
-    Route::get('/cekout', [PresensiContoller::class, 'showCekout']);
-    Route::get('/home', [PresensiContoller::class, 'show']);
+    Route::get('/absen', [PresensiController::class, 'showCekin']);
+    Route::get('/home', [PresensiController::class, 'show']);
+Route::get('/data-presensi', [AdminController::class, 'presensi']);
+
 });
 
-Route::post('/presensi/store', [PresensiContoller::class, 'store']);
+Route::post('/presensi/store', [PresensiController::class, 'store']);
 
