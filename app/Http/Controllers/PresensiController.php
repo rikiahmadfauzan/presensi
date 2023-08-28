@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Data;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -10,13 +11,25 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PresensiController extends Controller
 {
+    function export_excel(){
+        return Excel::download(new Data, "datapresensi.xlsx");
+    }
     function show(){
         $nik = Auth::user()->nik;
         $data['presensi'] = Presensi::all()->where('nik', $nik);
         return view('pegawai.pegawai', $data);
+    }
+    function profile(){
+        return view('pegawai.profile');
+    }
+    function data(){
+        $nik = Auth::user()->nik;
+        $data['presensi'] = Presensi::all()->where('nik', $nik);
+        return view('pegawai.data', $data);
     }
     function showCekin(){
         $hariini = date("Y-m-d");
@@ -24,44 +37,6 @@ class PresensiController extends Controller
         $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
         return view('pegawai.checkin', compact('cek'));
     }
-
-    // function createPegawai(Request $req){
-    //     $timezone = 'Asia/Jakarta';
-    //     $date = new DateTime('now', new DateTimeZone($timezone));
-    //     $tanggal = $date->format('Y-m-d');
-    //     $localtime = $date->format('H:i:s');
-    //    Presensi::create([
-    //            'id' => $req->id,
-    //            'nama' => $req->nama,
-    //            'nik' => $req->nik,
-    //            'lokasi' => $req->lokasi,
-    //            'evidence' => $req->file('evidence')->store('evidence'),
-    //            'jammasuk' => $localtime,
-    //            'tanggal' => $tanggal
-
-    //        ]);
-    //        return redirect('/pegawai');
-    //  }
-    // function update(Request $req){
-    //     $timezone = 'Asia/Jakarta';
-    //     $date = new DateTime('now', new DateTimeZone($timezone));
-    //     $tanggal = $date->format('Y-m-d');
-    //     $localtime = $date->format('H:i:s');
-    //    Pegawai::where('id', $req->id)->update([
-    //     'id' => $req->id,
-    //     'nama' => $req->nama,
-    //     'nik' => $req->nik,
-    //     'lokasi' => $req->lokasi,
-    //     'evidence' => $req->file('evidence')->store('evidence'),
-    //     'jammasuk' => $localtime,
-    //     'tanggal' => $tanggal
-
-
-    //     ]);
-    //     return redirect('menu');
-    //  }
-
-
     public function store(Request $request){
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
@@ -93,7 +68,7 @@ class PresensiController extends Controller
             ];
             $update = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->update($data_pulang);
             if($update){
-                echo "success|Terimkasih, Hati-Hati Di Jalan|out";
+                echo "success|Terimakasih, Hati-Hati Di Jalan|out";
                 Storage::put($file, $image_base64);
             }else{
                 echo "error|Maaf Absen Gagal|out";

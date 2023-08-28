@@ -25,7 +25,6 @@
                     <div class="col-md-12 stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <p class="card-title">REKAPAN</p>
                                 <div class="table-responsive">
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>

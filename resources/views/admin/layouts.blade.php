@@ -29,10 +29,10 @@
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo"><img src="{{ asset('dashboard') }}/images/logo.png" "
+                    <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.svg"
                             alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href=""><img
-                            src="{{ asset('dashboard') }}/images/logo.png" " alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" href="../../index.html"><img
+                            src="../../images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
                         data-toggle="minimize">
                         <span class="mdi mdi-sort-variant"></span>
@@ -56,19 +56,19 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="/admin">
                             <i class="mdi mdi-home menu-icon"></i>
                             <span class="menu-title">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="/profil">
                             <i class="mdi mdi-account menu-icon"></i>
                             <span class="menu-title">Profile</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/data">
+                        <a class="nav-link" href="/data-presensi">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Rekapan</span>
                         </a>
@@ -87,7 +87,7 @@
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a
-                                href="https://www.telkom.co.id/" target="_blank">telkomlembong
+                            href="https://www.telkom.co.id/" target="_blank">telkomlembong
                             </a>2023</span>
                     </div>
                 </footer>

@@ -30,18 +30,22 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/proseslogin', [AuthController::class, 'proseslogin']);
 Route::post('/create/register', [AuthController::class, 'create']);
     // Admin
-Route::get('/admin', [AdminController::class, 'showAdmin']);
 Route::get('/layouts', [AdminController::class, 'layouts']);
 
 
 // route::post('/createPegawai', [PresensiController::class, 'createPegawai']);
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/absen', [PresensiController::class, 'showCekin']);
-    Route::get('/home', [PresensiController::class, 'show']);
+Route::get('/absen', [PresensiController::class, 'showCekin']);
+Route::get('/home', [PresensiController::class, 'show']);
+Route::get('/data', [PresensiController::class, 'data']);
+Route::get('/profil', [PresensiController::class, 'profile']);
 Route::get('/data-presensi', [AdminController::class, 'presensi']);
+Route::get('/admin', [AdminController::class, 'showAdmin']);
+
 
 });
 
 Route::post('/presensi/store', [PresensiController::class, 'store']);
+Route::get('/presensi/export', [PresensiController::class, 'export_excel']);
 

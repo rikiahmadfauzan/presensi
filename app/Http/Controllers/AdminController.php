@@ -13,6 +13,8 @@ class AdminController extends Controller
         return view('admin.admin');
     }
     function presensi(){
+
+        // $nik = Auth::user()->nik;
         $data['presensi'] = Presensi::all();
         return view('admin.datapresensi', $data);
     }
