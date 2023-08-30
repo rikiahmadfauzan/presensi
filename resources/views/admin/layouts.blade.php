@@ -61,12 +61,12 @@
                             <span class="menu-title">Home</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="/profil">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profil-admin">
                             <i class="mdi mdi-account menu-icon"></i>
                             <span class="menu-title">Profile</span>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/data-presensi">
                             <i class="mdi mdi-grid-large menu-icon"></i>

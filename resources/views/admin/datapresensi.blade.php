@@ -18,8 +18,8 @@
                                                     <th>Nama</th>
                                                     <th>Nik</th>
                                                     <th>Tanggal</th>
-                                                    <th>Check In</th>
-                                                    <th>Check Out</th>
+                                                    <th>Jam In</th>
+                                                    <th>Jam Out</th>
                                                     <th>Lokasi In</th>
                                                     <th>Lokasi Out</th>
                                                     <th>Foto In</th>
@@ -29,20 +29,20 @@
 
                                             @foreach ($presensi as $item)
                                                 <tbody>
-                                                    {{-- @php
-                                                        $foto_in = Storage::url('evidence/' . $item->foto_in);
-                                                        $foto_out = Storage::url('evidence/' . $item->foto_out);
-                                                    @endphp --}}
+                                                    @php
+                                                        $foto_in = Storage::url('uploads/evidence/' . $item->foto_in);
+                                                        $foto_out = Storage::url('uploads/evidence/' . $item->foto_out);
+                                                    @endphp
                                                     <tr>
                                                         <td>{{ $item->name }}</td>
-                                                        {{-- <td>{{ $item->nik }}</td>
+                                                        <td>{{ $item->nik }}</td>
                                                         <td>{{ $item->tgl }}</td>
                                                         <td>{{ $item->jam_in }}</td>
                                                         <td>{{ $item->jam_out }}</td>
                                                         <td>{{ $item->lokasi_in }}</td>
-                                                        <td>{{ $item->lokasi_out }}</td> --}}
-                                                        <td><img class="avatar" src="/storage/{{ $item->foto_in }}" /></td>
-                                                        {{-- <td><img class="avatar" src="{{ url($foto_out) }}" /></td> --}}
+                                                        <td>{{ $item->lokasi_out }}</td>
+                                                        <td><img class="avatar" src="{{ url($foto_in) }}" /></td>
+                                                        <td><img class="avatar" src="{{ url($foto_out) }}" /></td>
                                                     </tr>
                                                 </tbody>
                                             @endforeach

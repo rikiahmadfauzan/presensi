@@ -40,6 +40,7 @@ Route::get('/absen', [PresensiController::class, 'showCekin']);
 Route::get('/home', [PresensiController::class, 'show'])->middleware('userAkses:user');
 Route::get('/data', [PresensiController::class, 'data']);
 Route::get('/profil', [PresensiController::class, 'profile']);
+Route::get('/profil-admin', [AdminController::class, 'profile']);
 Route::get('/data-presensi', [AdminController::class, 'presensi']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [AdminController::class, 'showAdmin'])->middleware('userAkses:admin');

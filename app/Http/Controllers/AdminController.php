@@ -24,21 +24,12 @@ class AdminController extends Controller
     // }
     function presensi(){
         $data['presensi'] = Presensi::all();
-        $data['admin'] = Admin::all();
         return view('admin.datapresensi', $data);
     }
 
-    function create(Request $req){
-        $nik = Auth::user()->nik;
-        Admin::create([
-            'id'=> $req->id,
-            'nama' => $req->nama,
-            'nik' => $nik,
-            'foto_in' => $req->file('foto_in')->store('foto_in')
-
-
-        ]);
-        return redirect('/data-presensi');
+    function profile(){
+        return view('admin.profile');
     }
+
 
 }

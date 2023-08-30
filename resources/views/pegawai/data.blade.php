@@ -19,8 +19,8 @@
                                                 <th>Nama</th>
                                                 <th>Nik</th>
                                                 <th>Tanggal</th>
-                                                <th>Check In</th>
-                                                <th>Check Out</th>
+                                                <th>Jam In</th>
+                                                <th>Jam Out</th>
                                                 <th>Lokasi In</th>
                                                 <th>Lokasi Out</th>
                                                 <th>Foto In</th>
