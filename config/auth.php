@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // 'presensi' => [
+        //     'driver' => 'session',
+        //     'provider' => 'presensis',
+        // ],
     ],
 
     /*
@@ -64,6 +68,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        // 'presensis' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Presensi::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

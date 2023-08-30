@@ -37,7 +37,7 @@ class PresensiController extends Controller
         $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
         return view('pegawai.checkin', compact('cek'));
     }
-    public function store(Request $request){
+    function create(Request $request){
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $tgl = $date->format('Y-m-d');
@@ -54,12 +54,12 @@ class PresensiController extends Controller
             $ket = "in";
         }
         $image = $request->image;
-        $folderPath = "evidence/";
+        $folderPath = "public/uploads/evidence/";
+        $formatName = $nik . "-" . $tgl . "-" . $ket;
         $image_parts = explode(";base64", $image);
         $image_base64 = base64_decode($image_parts[1]);
-        $formatName = $nik . "-" .$tgl . "-" . $ket;
         $fileName = $formatName . ".png";
-        $file = $folderPath .$fileName;
+        $file = $folderPath . $fileName;
         if($cek > 0){
             $data_pulang = [
                 'jam_out' => $localtime,

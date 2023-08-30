@@ -10,7 +10,7 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-   
+
     function show(){
         return view('auth.login');
     }
@@ -38,9 +38,9 @@ class AuthController extends Controller
         return redirect('/home');
        }
     }else{
-        echo "gagal";
+        return redirect('/login')->withErrors('Username dan Password yang anda masukan tidak sesuai')->withInput();
     }
-    return redirect()->back();
+
 
     }
     function logout(){

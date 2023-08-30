@@ -8,6 +8,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3>Selamat Datang Diahaman Admin</h3>
+                                <form action="/admin/create" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="text" name="nama" id="nama">
+                                    <input type="file" name="foto_in" id="foto_in"><br>
+                                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
