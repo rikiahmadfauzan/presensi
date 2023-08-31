@@ -38,7 +38,7 @@ class AuthController extends Controller
         return redirect('/home');
        }
     }else{
-        return redirect('/login')->withErrors('Username dan Password yang anda masukan tidak sesuai')->withInput();
+        return redirect('/login')->withErrors('Username atau     Password yang anda masukan tidak sesuai')->withInput();
     }
 
 

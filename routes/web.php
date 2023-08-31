@@ -36,19 +36,24 @@ Route::post('/create/register', [AuthController::class, 'create']);
 // route::post('/createPegawai', [PresensiController::class, 'createPegawai']);
 
 Route::middleware(['auth'])->group(function (){
+    //Auth Controller
+Route::get('/logout', [AuthController::class, 'logout']);
+    //presensi Controller
 Route::get('/absen', [PresensiController::class, 'showCekin']);
 Route::get('/home', [PresensiController::class, 'show'])->middleware('userAkses:user');
 Route::get('/data', [PresensiController::class, 'data']);
 Route::get('/profil', [PresensiController::class, 'profile']);
+    //Admin Controller
 Route::get('/profil-admin', [AdminController::class, 'profile']);
 Route::get('/data-presensi', [AdminController::class, 'presensi']);
-Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [AdminController::class, 'showAdmin'])->middleware('userAkses:admin');
 
 });
-    // export excel
 Route::post('/presensi/store', [PresensiController::class, 'create']);
-Route::get('/presensi/export', [PresensiController::class, 'export_excel']);
+Route::post('/showmap', [PresensiController::class, 'showmap']);
 
-Route::post('/admin/create', [AdminController::class, 'create']);
+    // export excel
+Route::get('/presensi/export', [AdminController::class, 'export_excel']);
+Route::get('/pegawai', [AdminController::class, 'dataPegawai']);
+
 

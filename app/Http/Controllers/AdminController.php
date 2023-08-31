@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\Data;
 
 use App\Models\Admin;
 use App\Models\Presensi;
@@ -11,17 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    function export_excel(){
+        return (new Data)->download('data_presensi.xlsx');
+    }
     function showAdmin(){
         return view('admin.admin');
     }
-    // function presensi(){
-    //     return view('admin.datapresensi');
-    // }
-    // function layouts(){
-    //     // $nik = Auth::user()->nik;
-    //     $data['user'] = User::first();
-    //     return view('pegawai.layouts', $data);
-    // }
     function presensi(){
         $data['presensi'] = Presensi::all();
         return view('admin.datapresensi', $data);
@@ -29,6 +25,10 @@ class AdminController extends Controller
 
     function profile(){
         return view('admin.profile');
+    }
+    function dataPegawai(){
+        $data['user'] = User::all();
+        return view('admin.pegawai', $data);
     }
 
 

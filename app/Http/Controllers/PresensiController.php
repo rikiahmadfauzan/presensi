@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\Data;
+use Date;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -15,9 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PresensiController extends Controller
 {
-    function export_excel(){
-        return Excel::download(new Data, "datapresensi.xlsx");
-    }
+
     function show(){
         $nik = Auth::user()->nik;
         $data['presensi'] = Presensi::all()->where('nik', $nik);
@@ -92,5 +90,11 @@ class PresensiController extends Controller
             }
         }
 
+    }
+
+    public function showmap(Request $request){
+        $id = $request->id;
+        $presensi = DB::table('presensi')->where('id', $id)->first();
+        return view('pegawai.showmap', compact('presensi'));
     }
 }

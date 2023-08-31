@@ -22,6 +22,8 @@
         integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 
 <body onload="realtimeClock()">
@@ -29,7 +31,7 @@
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../images/logo.svg"
+                    <a class="navbar-brand brand-logo" href="../../index.html"><img src="{{ asset('dashboard') }}/images/logo.png"
                             alt="logo" /></a>
                     <a class="navbar-brand brand-logo-mini" href="../../index.html"><img
                             src="../../images/logo-mini.svg" alt="logo" /></a>
@@ -68,6 +70,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/pegawai">
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                            <span class="menu-title">Pegawai</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/data-presensi">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Rekapan</span>
@@ -87,7 +95,7 @@
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a
-                            href="https://www.telkom.co.id/" target="_blank">telkomlembong
+                                href="https://www.telkom.co.id/" target="_blank">telkomlembong
                             </a>2023</span>
                     </div>
                 </footer>
@@ -111,6 +119,10 @@
     <script src="{{ asset('dashboard') }}/js/dataTables.bootstrap4.js"></script>
     <script src="{{ asset('dashboard') }}/js/jquery.cookie.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/js/scripts.js"></script>
+    <script src="{{ asset('assets') }}/js/map.js"></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
 
