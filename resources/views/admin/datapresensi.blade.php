@@ -5,12 +5,13 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-md-12 stretch-card">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <div class="card-body">
                                 <p class="card-title">REKAPAN</p>
                                 <a href="/presensi/export">
                                     <button class="btn btn-sm mb-3 btn-success">Export Excel</button>
                                 </a>
+
                                 <div class="table-responsive">
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
@@ -46,7 +47,7 @@
                                                             <span class="text-danger">Belum Foto</span>
                                                         @endif
                                                     </td>
-                                                    <td><a id="{{ $item->id }}" class="showmap">Show
+                                                    <td><a id="{{ $item->id }}" class="showmap btn btn-danger btn-sm">Show
                                                             Map</a></td>
                                                 </tr>
                                             </tbody>

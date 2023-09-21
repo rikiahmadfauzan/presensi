@@ -1,22 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Exports\Data;
+use DateTime;
 
+use DateTimeZone;
+use App\Models\User;
+use App\Exports\Data;
 use App\Models\Admin;
 use App\Models\Presensi;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+
 
 class AdminController extends Controller
 {
     function export_excel(){
-        return (new Data)->download('data_presensi.xlsx');
+        $timezone = 'Asia/Jakarta';
+        $date = new DateTime('now', new DateTimeZone($timezone));
+        $tgl = $date->format('Y-m-d');
+        return (new Data)->download("data-presensi-$tgl.xlsx");
     }
     function showAdmin(){
-        return view('admin.admin');
+        $data['user'] = User::all();
+        return view('admin.homeadmin',$data);
     }
     function presensi(){
         $data['presensi'] = Presensi::all();
@@ -27,9 +36,22 @@ class AdminController extends Controller
         return view('admin.profile');
     }
     function dataPegawai(){
-        $data['user'] = User::all();
-        return view('admin.pegawai', $data);
-    }
+            $role = 'user';
+            $data['user'] = User::all()->where('role', $role);
+            return view('admin.pegawai', $data);
 
+    }
+    //     function delete($id){
+    //     $presensi = Presensi::where('id', $id)->delete();
+    //     if($presensi){
+    //         return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
+    //     }else{
+    //         return Redirect::back()->with(['warning' => 'Data Gagal Dihapus']);
+    //     }
+    //   }
+
+    //   function home(){
+    //     return view('admin.home');
+    //   }
 
 }

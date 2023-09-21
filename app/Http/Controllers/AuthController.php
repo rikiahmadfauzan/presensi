@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Guard;
 use App\Models\User;
-
+use Illuminate\Database\QueryException;
 
 class AuthController extends Controller
 {
@@ -20,20 +20,20 @@ class AuthController extends Controller
 
     public function proseslogin(Request $request){
        $request->validate([
-        'nik'=>'required',
+        'email'=>'required',
         'password' => 'required',
        ],[
-        'nik.required' => 'Nik wajib diisi',
+        'email.required' => 'Email wajib diisi',
         'password.required' => 'Password wajib diisi',
        ]
     );
     $proseslogin = [
-        'nik' => $request->nik,
+        'email' => $request->email,
         'password' => $request->password,
     ];
     if(Auth::attempt($proseslogin)){
        if(Auth::user()->role == 'admin'){
-        return redirect('/admin');
+        return redirect('/home-admin');
        }elseif(Auth::user()->role == 'user'){
         return redirect('/home');
        }
@@ -49,16 +49,30 @@ class AuthController extends Controller
     }
 
     function create(Request $req){
+        $req->validate([
+            'nik'=>'required|unique:users',
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            // 'password' => 'required',
+           ],[
+            'nik.required' => 'Nik wajib diisi',
+            'name.required' => 'Name wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            // 'password.required' => 'Password wajib diisi',
+            'nik.unique' => 'Nik sudah terdaftar',
+            'email.unique' => 'Email sudah terdaftar',
+           ]
+        );
         User::create([
             'id' => $req->id,
             'nik' => $req->nik,
             'name' => $req->name,
             'email' => $req->email,
-            'password' => $req->password
+            'password' => $req->nik
 
         ]);
 
-        return redirect('/login');
+        return redirect('/pegawai')->with('success', 'Berhasil menambahkan data');
     }
 
 

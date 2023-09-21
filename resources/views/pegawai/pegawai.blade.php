@@ -5,7 +5,7 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <div class="card-body dashboard-tabs p-0">
                                 <div class="container">
                                     <div class="text-center py-2">
@@ -13,7 +13,7 @@
                                     </div>
                                     <div class="mt-0 py-0">
                                         <a href="/absen">
-                                            <button class="btn btn-sm mb-3 btn-primary col col-12">Absen</button>
+                                            <button class="btn btn-sm mb-3 btn-danger col col-12">Absen</button>
                                         </a>
                                     </div>
                                 </div>
@@ -23,33 +23,42 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 stretch-card">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="recent-purchases-listing" class="table">
                                         <thead>
                                             <tr>
-                                                {{-- <th>Nama</th> --}}
-                                                <th>Nik</th>
-                                                <th>Tanggal</th>
-                                                <th>Check In</th>
-                                                <th>Check Out</th>
-                                                <th>Lokasi In</th>
-                                                <th>Lokasi Out</th>
+                                                <th>NAMA</th>
+                                                <th>NIK</th>
+                                                <th>TANGGAL</th>
+                                                <th>JAM MASUK</th>
+                                                <th>JAM KELUAR</th>
+                                                <th>FOTO MASUK</th>
+                                                <th>FOTO KELUAR</th>
                                             </tr>
                                         </thead>
                                         @foreach ($presensi as $item)
-                                        <tbody>
+                                            @php
+                                                $foto_in = Storage::url('uploads/evidence/' . $item->foto_in);
+                                                $foto_out = Storage::url('uploads/evidence/' . $item->foto_out);
+                                            @endphp
                                             <tr>
-                                                {{-- <td>{{ $user->name }}</td> --}}
+                                                <td>{{ $item->name }}</td>
                                                 <td>{{ $item->nik }}</td>
                                                 <td>{{ $item->tgl }}</td>
                                                 <td>{{ $item->jam_in }}</td>
-                                                <td>{{ $item->jam_out }}</td>
-                                                <td>{{ $item->lokasi_in }}</td>
-                                                <td>{{ $item->lokasi_out }}</td>
+                                                <td>{!! $item->jam_out != null ? $item->jam_out : '<span class="text-danger">Belum Absen</span>' !!}</td>
+                                                <td><img class="avatar" src="{{ url($foto_in) }}" /></td>
+                                                <td>
+                                                    @if ($item->jam_out != null)
+                                                        <img class="avatar" src="{{ url($foto_out) }}" />
+                                                    @else
+                                                        <span class="text-danger">Belum Foto</span>
+                                                    @endif
+                                                </td>
                                             </tr>
-                                        </tbody>
+                                            </tbody>
                                         @endforeach
                                     </table>
                                 </div>

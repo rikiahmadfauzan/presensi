@@ -46,7 +46,7 @@ Route::get('/profil', [PresensiController::class, 'profile']);
     //Admin Controller
 Route::get('/profil-admin', [AdminController::class, 'profile']);
 Route::get('/data-presensi', [AdminController::class, 'presensi']);
-Route::get('/admin', [AdminController::class, 'showAdmin'])->middleware('userAkses:admin');
+Route::get('/home-admin', [AdminController::class, 'showAdmin'])->middleware('userAkses:admin');
 
 });
 Route::post('/presensi/store', [PresensiController::class, 'create']);
@@ -55,5 +55,7 @@ Route::post('/showmap', [PresensiController::class, 'showmap']);
     // export excel
 Route::get('/presensi/export', [AdminController::class, 'export_excel']);
 Route::get('/pegawai', [AdminController::class, 'dataPegawai']);
+Route::get('/hapus/{id}', [AdminController::class, 'delete']);
+// Route::get('/home-admin', [AdminController::class, 'home']);
 
 

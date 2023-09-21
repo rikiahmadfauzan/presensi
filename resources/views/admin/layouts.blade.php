@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/logo.png" />
+    <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/img.png" />
     {{-- js --}}
     <script src="{{ asset('assets/js/jam.js') }}"></script>
     <script src="{{ asset('assets/js/webcam.js') }}"></script>
@@ -29,26 +29,23 @@
 <body onload="realtimeClock()">
     <div class="container-scroller">
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex justify-content-center">
+            <div class="navbar-brand-wrapper d-flex justify-content-center bg-danger">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="../../index.html"><img src="{{ asset('dashboard') }}/images/logo.png"
-                            alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="../../index.html"><img
-                            src="../../images/logo-mini.svg" alt="logo" /></a>
+                    <h3 class="navbar-brand brand-logo text-white">Presence</h3>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
                         data-toggle="minimize">
-                        <span class="mdi mdi-sort-variant"></span>
+                        <span class="mdi mdi-sort-variant text-white"></span>
                     </button>
                 </div>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end bg-danger">
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <span class="nav-profile-name text-dark">{{ Auth::user()->name }}</span>
+                        <span class="nav-profile-name text-white">{{ Auth::user()->name }}</span>
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
-                    <span class="mdi mdi-menu"></span>
+                    <span class="mdi mdi-menu text-white"></span>
                 </button>
             </div>
         </nav>
@@ -58,9 +55,9 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin">
+                        <a class="nav-link" href="/home-admin">
                             <i class="mdi mdi-home menu-icon"></i>
-                            <span class="menu-title">Home</span>
+                            <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -78,7 +75,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/data-presensi">
                             <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Rekapan</span>
+                            <span class="menu-title">Presensi</span>
                         </a>
                     </li>
                     <li class="nav-item">
