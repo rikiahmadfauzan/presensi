@@ -75,5 +75,27 @@ class AuthController extends Controller
         return redirect('/pegawai')->with('success', 'Berhasil menambahkan data');
     }
 
+     function update(Request $req){
+
+        User::where('id', $req->id)->update([
+            'id' => $req->id,
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => bcrypt($req->password)
+
+        ]);
+        return redirect('/profil');
+     }
+     function updatePegawai(Request $req){
+
+        User::where('id', $req->id)->update([
+            'id' => $req->id,
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => bcrypt($req->password)
+
+        ]);
+        return redirect('/profil-admin');
+     }
 
 }

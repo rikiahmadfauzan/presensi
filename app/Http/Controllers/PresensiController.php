@@ -97,4 +97,6 @@ class PresensiController extends Controller
         $presensi = DB::table('presensi')->where('id', $id)->first();
         return view('pegawai.showmap', compact('presensi'));
     }
+   
+
 }

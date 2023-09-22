@@ -13,7 +13,7 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet" />
+    {{-- <link href="{{ asset('assets') }}/css/styles.css" rel="stylesheet" /> --}}
     <link rel="shortcut icon" href="{{ asset('dashboard') }}/images/img.png" />
     {{-- js --}}
     <script src="{{ asset('assets/js/jam.js') }}"></script>
@@ -80,7 +80,14 @@
             </nav>
             <!-- partial -->
             <div class="main-panel">
-                @yield('content')
+                <div class="content-wrapper bg-white py-2">
+                    <div class="row">
+                        <div class="col-md-12 stretch">
+                            @yield('content')
+                            {{-- <h5>Selamat Datang {{ Auth::user()->name }}</h5> --}}
+                        </div>
+                    </div>
+                </div>
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a

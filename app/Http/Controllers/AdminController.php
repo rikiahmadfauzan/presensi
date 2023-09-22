@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
+    function search(Request $req){
+        $data['presensi'] = Presensi::where('name', $req->search)
+            ->orwhere('name', $req->search)->get();
+        return view('admin.datapresensi', $data);
+     }
     function export_excel(){
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
@@ -53,5 +58,7 @@ class AdminController extends Controller
     //   function home(){
     //     return view('admin.home');
     //   }
+
+   
 
 }
