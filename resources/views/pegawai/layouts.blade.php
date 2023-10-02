@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('dashboard') }}/favicon.icon">
+    <link rel="icon" href="{{ asset('dashboard') }}/assets/images/logo.svg">
     <title>Presence</title>
 
     <!-- Simple bar CSS -->

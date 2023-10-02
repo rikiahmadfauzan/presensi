@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('dashboard') }}/favicon.icon">
+    <link rel="icon" href="{{ asset('dashboard') }}/assets/images/logo.svg">
     <title>Presence</title>
     {{-- data tabel --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
@@ -61,7 +61,7 @@
                 {{-- <img src="{{ asset('dashboard') }}/assets/images/logo.png" width="300" height="100" alt="logo"> --}}
 
                 <div class="w-100 mb-4 d-flex">
-                    <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+                    <a class="navbar-brand mx-auto mt-2 flex-fill text-center"  href="/home-admin">
                         <svg version="1.1" id="logo" class="navbar-brand-img brand-sm"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                             y="0px" viewBox="0 0 120 120" xml:space="preserve">

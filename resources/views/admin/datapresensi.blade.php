@@ -124,8 +124,9 @@
                             <div class="col-auto">
                                 {{-- <button type="button" class="btn btn-secondary" id="delete_all_data"><span
                                         class="fe fe-trash fe-12 mr-2"></span>Delete</button> --}}
-                                <button type="button" class="btn btn-success"><span
-                                        class="fe fe-download fe-12 mr-2"></span>Excel</button>
+                                <a href="/presensi/export"><button type="button" class="btn btn-success"><span
+                                            class="fe fe-download fe-12 mr-2"></span>Excel</button>
+                                </a>
                             </div>
                             <!-- Small table -->
                             <div class="col-md-12 my-4">
