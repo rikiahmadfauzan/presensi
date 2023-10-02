@@ -1,38 +1,34 @@
 @extends('pegawai.layouts')
 @section('content')
-    <section>
-        <main id="main">
-            <div class="container-scroller">
-                <div class="container-fluid">
-                        <div class="row w-100 mx-0">
-                            <div class="card col-lg-4 mx-auto shadow-sm">
-                                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                                    <div class="brand-logo">
-                                        {{-- <img src="{{ asset('dashboard') }}/images/logo.svg" alt="logo"> --}}
-                                    </div>
-                                    <div class="row" style="margin-top: 70px">
-                                        <div class="col">
-                                            <input type="hidden" name="" id="lokasi">
-                                            <div class="webcam-capture"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2">
-                                        @if ($cek > 0)
-                                            <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
-                                                Keluar</button>
-                                        @else
-                                            <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen
-                                                Masuk</button>
-                                        @endif
-                                    </div>
-                                    <div class="mt-1" id="map"></div>
-                                </div>
+<div class="container-scroller">
+    <div class="container-fluid">
+            <div class="row w-100 mx-0">
+                <div class="card col-lg-4 mx-auto shadow-sm">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="brand-logo">
+                            {{-- <img src="{{ asset('dashboard') }}/images/logo.svg" alt="logo"> --}}
+                        </div>
+                        <div class="row" style="margin-top: 70px">
+                            <div class="col">
+                                <input type="hidden" name="" id="lokasi">
+                                <div class="webcam-capture"></div>
                             </div>
                         </div>
+                        <div class="mt-2">
+                            @if ($cek > 0)
+                                <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
+                                    Keluar</button>
+                            @else
+                                <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen
+                                    Masuk</button>
+                            @endif
+                        </div>
+                        <div class="mt-1" id="map"></div>
+                    </div>
                 </div>
             </div>
-        </main>
-    </section>
+    </div>
+</div>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />

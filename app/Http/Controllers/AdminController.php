@@ -29,7 +29,8 @@ class AdminController extends Controller
         return (new Data)->download("data-presensi-$tgl.xlsx");
     }
     function showAdmin(){
-        $data['user'] = User::all();
+        $role = 'user';
+        $data['user'] = User::all()->where('role', $role);
         return view('admin.homeadmin',$data);
     }
     function presensi(){
@@ -46,19 +47,39 @@ class AdminController extends Controller
             return view('admin.pegawai', $data);
 
     }
-    //     function delete($id){
-    //     $presensi = Presensi::where('id', $id)->delete();
-    //     if($presensi){
-    //         return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
-    //     }else{
-    //         return Redirect::back()->with(['warning' => 'Data Gagal Dihapus']);
-    //     }
-    //   }
+        function delete($id){
+        $user = User::where('id', $id)->delete();
+        if($user){
+            return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
+        }else{
+            return Redirect::back()->with(['warning' => 'Data Gagal Dihapus']);
+        }
+      }
+        function deleteData($id){
+        $presensi = Presensi::where('id', $id)->delete();
+        if($presensi){
+            return Redirect::back()->with(['success' => 'Data Berhasil Dihapus']);
+        }else{
+            return Redirect::back()->with(['warning' => 'Data Gagal Dihapus']);
+        }
+      }
 
     //   function home(){
     //     return view('admin.home');
     //   }
 
-   
+      function deleteAll(Request $request){
+        $id = $request->id;
+        User::whereIn('id', $id)->delete();
+        return redirect('/pegawai')->with('success', 'Berhasil menghapus data');
+          }
+    //   function deleteAllData(Request $request){
+    //     $id = $request->id;
+    //     Presensi::whereIn('id', $id)->delete();
+    //     return redirect('/data-presensi')->with('success', 'Berhasil menghapus data');
+    //       }
+
+
+
 
 }

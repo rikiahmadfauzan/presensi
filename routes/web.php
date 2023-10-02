@@ -45,9 +45,15 @@ Route::get('/data', [PresensiController::class, 'data']);
 Route::get('/profil', [PresensiController::class, 'profile']);
 
     //Admin Controller
-Route::get('/profil-admin', [AdminController::class, 'profile']);
-Route::get('/data-presensi', [AdminController::class, 'presensi']);
+Route::get('/profil-admin', [AdminController::class, 'profile'])->middleware('userAkses:admin');
+Route::get('/data-presensi', [AdminController::class, 'presensi'])->middleware('userAkses:admin');
 Route::get('/home-admin', [AdminController::class, 'showAdmin'])->middleware('userAkses:admin');
+Route::get('/admin/hapus/{id}', [AdminController::class, 'delete']);
+Route::get('/data/hapus/{id}', [AdminController::class, 'deleteData']);
+    //pegawai
+Route::post('/update/pegawai/{id}', [AdminController::class, 'updatePegawai']);
+
+
 
 });
 Route::post('/presensi/store', [PresensiController::class, 'create']);
@@ -63,4 +69,7 @@ Route::get('/search', [AdminController::class, 'search']);
 
 
 Route::post('/user/update/{id}', [AuthController::class, 'update']);
-Route::post('/admin/update/{id}', [AuthController::class, 'updatePegawai']);
+Route::post('/update/pegawai/{id}', [AuthController::class, 'updatePegawai']);
+Route::post('/admin/update/{id}', [AuthController::class, 'updateAdmin']);
+
+Route::delete('/all-employ',[AdminController::class, 'deleteAll'])->name('user.delete');

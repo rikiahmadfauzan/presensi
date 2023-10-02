@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Guard;
 use App\Models\User;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -38,9 +40,8 @@ class AuthController extends Controller
         return redirect('/home');
        }
     }else{
-        return redirect('/login')->withErrors('Username atau     Password yang anda masukan tidak sesuai')->withInput();
+        return redirect('/login')->withErrors('Username atau Password yang anda masukan tidak sesuai')->withInput();
     }
-
 
     }
     function logout(){
@@ -80,14 +81,21 @@ class AuthController extends Controller
         User::where('id', $req->id)->update([
             'id' => $req->id,
             'name' => $req->name,
-            'email' => $req->email,
+            // 'email' => $req->email,
             'password' => bcrypt($req->password)
 
         ]);
-        return redirect('/profil');
+        return redirect('/profil')->with('success', 'Berhasil update profile.');
      }
-     function updatePegawai(Request $req){
+     function updateAdmin(Request $req){
+    // if($req->file('foto_profile')){
+        //                 $user = User::where('id',$req->id)->first();
+        //                 Storage::delete($user->foto_profile);
 
+        //             $file = $req->file('foto_profile')->store('foto_profile');
+        //         }else{
+        //             $file = DB::raw('foto_profile');
+        //         }
         User::where('id', $req->id)->update([
             'id' => $req->id,
             'name' => $req->name,
@@ -95,7 +103,19 @@ class AuthController extends Controller
             'password' => bcrypt($req->password)
 
         ]);
-        return redirect('/profil-admin');
+        return redirect('/profil-admin')->with('success', 'Berhasil update profile.');
+     }
+     function updatePegawai(Request $req){
+
+        User::where('id', $req->id)->update([
+            'id' => $req->id,
+            'name' => $req->name,
+            'email' => $req->email,
+            // 'foto_profile' => $file,
+            // 'password' => bcrypt($req->password)
+
+        ]);
+        return redirect('/pegawai')->with('success', 'Berhasil update data pegawai.');
      }
 
 }

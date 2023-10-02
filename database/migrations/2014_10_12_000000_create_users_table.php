@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('name')->unique();
             $table->string('email')->unique();
+            // $table->text('foto_profile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role',['admin', 'user'])->default('user');

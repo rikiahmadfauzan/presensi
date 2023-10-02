@@ -1,78 +1,107 @@
 @extends('admin.layouts')
 @section('content')
-    <section class="vh-100">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-lg-6 mb-4 mb-lg-0">
-                    <div class="card mb-3 shadow-sm" style="border-radius: .5rem;">
-                        <div class="row g-0">
-                            <div class="col-md-4 gradient-custom text-center text-white"
-                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="{{ asset('dashboard')}}/images/profil.png"
-                                    alt="Avatar" class="img-fluid my-5" style="width: 80px;" /><br/>
-                                <i class="far fa-edit mb-5"></i>
-                                <button type="button" class="btn btn-danger mt-2 btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    Edit profile
-                                </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5 text-black">Edit Profile</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="forms-sample" action="/admin/update/{{ Auth::user()->id }}"
-                                                    method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" name="name"
-                                                            id="name" value="{{ Auth::user()->name }}">
+    <div class="wrapper">
+        <main role="main" class="main-content py-0 mt-0 pt-0">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="row align-items-center my-4">
+                            <div class="col">
+                                <h2 class="h3 mb-0 page-title">Profile</h2>
+                            </div>
+                            <div class="container py-5 h-100">
+                                <div class="row d-flex justify-content-center align-items-center h-100">
+                                    <div class="col col-lg-6 mb-4 mb-lg-0">
+                                        @if (Session::get('success'))
+                                            <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                        @endif
+                                        <div class="card mb-3 shadow" style="border-radius: .5rem;">
+                                            <div class="row g-0">
+                                                <div class="col-md-4 gradient-custom text-center text-white"
+                                                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                                    <img src="{{ asset('dashboard') }}/assets/images/profil.png"
+                                                        alt="Avatar" class="img-fluid my-5" style="width: 80px;" /><br />
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#eventModal"><span
+                                                            class="fe fe-edit fe-12 mr-2"></span>Edit</button>
+                                                    <!--  modal -->
+                                                    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="eventModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="varyModalLabel">Edit Profile
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body p-4">
+                                                                    <form action="/admin/update/{{ Auth::user()->id }}"
+                                                                        method="post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"
+                                                                                id="eventTitle"
+                                                                                value="{{ Auth::user()->name }}"
+                                                                                name="name">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="number" class="form-control"
+                                                                                id="eventTitle"
+                                                                                value="{{ Auth::user()->nik }}"
+                                                                                name="nik">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="email" class="form-control"
+                                                                                id="eventTitle"
+                                                                                value="{{ Auth::user()->email }}"
+                                                                                name="email">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="password" class="form-control"
+                                                                                id="eventTitle"
+                                                                                placeholder="Masukan password baru"
+                                                                                name="password">
+                                                                        </div>
+                                                                </div>
+                                                                <div class="modal-footer d-flex justify-content-between">
+                                                                    <button type="submit"
+                                                                        class="btn mb-2 btn-primary col-12">Update</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!--  modal -->
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body p-4">
+                                                        <h6>Information Profile</h6>
+                                                        <hr class="mt-0 mb-4">
+                                                        <div class="row pt-1">
+                                                            <div class="col-6 mb-3">
+                                                                <h6>Nama</h6>
+                                                                <p class="text-muted">{{ Auth::user()->name }}</p>
+                                                            </div>
+                                                            <div class="col-6 mb-3">
+                                                                <h6>Nik</h6>
+                                                                <p class="text-muted">{{ Auth::user()->nik }}</p>
+                                                            </div>
+                                                            <div class="col-6 mb-3">
+                                                                <h6>Email</h6>
+                                                                <p class="text-muted">{{ Auth::user()->email }}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <input type="email" class="form-control" name="email"
-                                                            id="email" value="{{ Auth::user()->email }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="password" class="form-control" name="password"
-                                                            id="password" placeholder="Password">
-                                                    </div>
-                                                    <button type="submit"
-                                                        class="btn btn-danger col-12 me-2">Submit</button>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body p-4">
-                                    <h6>Information Profile</h6>
-                                    <hr class="mt-0 mb-4">
-                                    <div class="row pt-1">
-                                        <div class="col-6 mb-3">
-                                            <h6>Nama</h6>
-                                            <p class="text-muted">{{ Auth::user()->name }}</p>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Nik</h6>
-                                            <p class="text-muted">{{ Auth::user()->nik }}</p>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Email</h6>
-                                            <p class="text-muted">{{ Auth::user()->email }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                            </div </div> <!-- .col-12 -->
+                        </div> <!-- .row -->
+                    </div> <!-- .container-fluid -->
+        </main> <!-- main -->
+    </div>
 @endsection
