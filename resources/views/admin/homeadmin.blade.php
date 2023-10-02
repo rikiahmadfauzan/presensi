@@ -4,11 +4,6 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-12">
-            <div class="row align-items-center mb-2">
-              <div class="col">
-                <h2 class="h5 page-title">Welcome! {{ Auth::user()->name }}</h2>
-              </div>
-            </div>
             <div class="mb-2 align-items-center">
               <div class="card shadow mb-4">
                 <div class="card-body">

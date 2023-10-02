@@ -7,8 +7,9 @@
                     <div class="col-12">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h2 class="h3 mb-0 page-title">Profile</h2>
+                                <h2 class="h4 mb-0 page-title">Profile</h2>
                             </div>
+
                             <div class="container py-5 h-100">
                                 <div class="row d-flex justify-content-center align-items-center h-100">
                                     <div class="col col-lg-6 mb-4 mb-lg-0">

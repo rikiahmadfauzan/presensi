@@ -34,14 +34,12 @@
     {{-- map --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-        <style>
-            .nav-link.active
-             {
-                background-color: #e9ecef;
-                border-radius: 0.25rem;
-            }
-
-        </style>
+    <style>
+        .nav-link.active {
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+        }
+    </style>
 
 </head>
 
@@ -51,6 +49,23 @@
             <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
                 <i class="fe fe-menu navbar-toggler-icon"></i>
             </button>
+            <ul class="nav">
+                <li class="nav-item nav-link text-muted my-2">
+                    <h5>Welcome! {{ Auth::user()->name }}</h5>
+                </li>
+                {{-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="avatar avatar-sm mt-2">
+                    <img src="{{ asset('dashboard') }}/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                  </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="#">Activities</a>
+                </div>
+              </li> --}}
+            </ul>
         </nav>
         <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
             <a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3"
@@ -113,9 +128,9 @@
 
     {{-- map --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"
-    integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="{{ asset('dashboard') }}/js/jquery.min.js"></script>
@@ -155,7 +170,6 @@
     <script src='{{ asset('dashboard') }}/js/uppy.min.js'></script>
     <script src='{{ asset('dashboard') }}/js/quill.min.js'></script>
     <script>
-
         $('.select2').select2({
             theme: 'bootstrap4',
         });

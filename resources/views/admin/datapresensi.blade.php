@@ -119,7 +119,7 @@
                     <div class="col-12">
                         <div class="row align-items-center my-4">
                             <div class="col">
-                                <h2 class="h3 mb-0 page-title">Presence</h2>
+                                <h2 class="h4 mb-0 page-title">Presence</h2>
                             </div>
                             <div class="col-auto">
                                 {{-- <button type="button" class="btn btn-secondary" id="delete_all_data"><span

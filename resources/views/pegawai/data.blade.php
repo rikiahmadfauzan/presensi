@@ -8,7 +8,7 @@
                     <div class="row">
                         <!-- Small table -->
                         <div class="col-md-12">
-                            <h2 class="h4 mb-1">Presence</h2>
+                            <h2 class="h4 mb-0">Presence</h2>
                             <div class="card shadow">
                                 <div class="card-body">
                                     <!-- table -->
