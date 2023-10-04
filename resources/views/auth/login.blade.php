@@ -41,15 +41,9 @@
                         let's get started
                     </h4>
                     <h6 class="font-weight-light">Sign in to continue.</h6>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $item)
-                                    <li>{{ $item }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    @if (Session::get('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
                     <form class="pt-3" action="/proseslogin" method="post">
                         @csrf
                         <div class="form-group">

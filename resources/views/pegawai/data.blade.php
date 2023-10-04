@@ -12,7 +12,7 @@
                             <div class="card shadow">
                                 <div class="card-body">
                                     <!-- table -->
-                                    <table class="table table-borderless table-hover">
+                                    <table class="table table-borderless">
                                         <thead>
                                             <tr>
                                                 <th>NAMA</th>

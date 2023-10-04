@@ -1,7 +1,7 @@
 @extends('pegawai.layouts')
 @section('content')
-<div class="container-scroller">
-    <div class="container-fluid">
+    <div class="container-scroller">
+        <div class="container-fluid">
             <div class="row w-100 mx-0">
                 <div class="card col-lg-4 mx-auto shadow-sm">
                     <div class="auth-form-light text-left py-5 px-4 px-sm-5">
@@ -15,20 +15,25 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            @if ($cek > 0)
-                                <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
-                                    Keluar</button>
+                            @foreach ($presensi as $item)
+                            @endforeach
+                            @if ($cek != null)
+                                @if ($item->jam_out == null)
+                                    <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
+                                        Keluar</button>
+                                @else
+                                    <button class="btn btn-sm mb-3 btn-success col col-12">Silahkan Absen kembali besok!</button>
+                                @endif
                             @else
-                                <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen
-                                    Masuk</button>
+                                <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen Masuk</button>
                             @endif
                         </div>
                         <div class="mt-1" id="map"></div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-</div>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />

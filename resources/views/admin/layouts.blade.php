@@ -35,12 +35,12 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-        .nav-link.active
-         {
-            background-color: #e9ecef;
+        .nav-link.active {
+            color: #e9ecef;
             border-radius: 0.25rem;
-        }
+            background-color: #387aff;
 
+        }
     </style>
 </head>
 
@@ -62,20 +62,24 @@
                       <span class="dot dot-md bg-success"></span>
                     </a> --}}
                 <li class="nav-item nav-link text-muted my-2">
-                    <h5>Welcome! {{ Auth::user()->name }}</h5>
+                    <h5>{{ Auth::user()->name }}</h5>
                 </li>
-                {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="avatar avatar-sm mt-2">
-                    <img src="{{ asset('dashboard') }}/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
-                  </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <a class="dropdown-item" href="#">Activities</a>
-                </div>
-              </li> --}}
+                <li>
+                    <a class="nav-link  text-muted pr-0">
+                        <span class="avatar avatar-sm mt-2">
+                            @if (!empty(Auth::user()->foto_profile))
+                                @php
+                                    $path = Storage::url('uploads/foto_profile/' . Auth::user()->foto_profile);
+                                @endphp
+                                <img src="{{ url($path) }}" alt="Avatar" class="avatar-img rounded-circle">
+                            @else
+                                <img src="{{ asset('dashboard') }}/assets/images/profil.png" alt="Avatar"
+                                class="avatar-img rounded-circle">
+                            @endif
+
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
@@ -88,7 +92,7 @@
                 {{-- <img src="{{ asset('dashboard') }}/assets/images/logo.png" width="300" height="100" alt="logo"> --}}
 
                 <div class="w-100 mb-4 d-flex">
-                    <a class="navbar-brand mx-auto mt-2 flex-fill text-center"  href="/home-admin">
+                    <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="/home-admin">
                         <svg version="1.1" id="logo" class="navbar-brand-img brand-sm"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                             y="0px" viewBox="0 0 120 120" xml:space="preserve">
@@ -101,7 +105,7 @@
                     </a>
                 </div>
                 <ul class="navbar-nav flex-fill w-100 mb-2">
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('home-admin') ? 'active' : '' }}"">
                         <a href="/home-admin" class="nav-link {{ Request::is('home-admin') ? 'active' : '' }}">
                             <i class="fe fe-home fe-16"></i>
                             <span class="ml-3 item-text">Dashboard</span>
@@ -113,19 +117,19 @@
                     <span>Page</span>
                 </p>
                 <ul class="navbar-nav flex-fill w-100 mb-2">
-                    <li class="nav-item w-100">
+                    <li class="nav-item w-100 {{ Request::is('pegawai') ? 'active' : '' }}"">
                         <a class="nav-link {{ Request::is('pegawai') ? 'active' : '' }}" href="/pegawai">
                             <i class="fe fe-users fe-16"></i>
                             <span class="ml-3 item-text">Pegawai</span>
                         </a>
                     </li>
-                    <li class="nav-item w-100">
+                    <li class="nav-item w-100 {{ Request::is('data-presensi') ? 'active' : '' }}"">
                         <a class="nav-link {{ Request::is('data-presensi') ? 'active' : '' }}" href="/data-presensi">
                             <i class="fe fe-check-circle fe-16"></i>
                             <span class="ml-3 item-text">Presence</span>
                         </a>
                     </li>
-                    <li class="nav-item w-100">
+                    <li class="nav-item w-100 {{ Request::is('profil-admin') ? 'active' : '' }}"">
                         <a class="nav-link {{ Request::is('profil-admin') ? 'active' : '' }}" href="/profil-admin">
                             <i class="fe fe-user fe-16"></i>
                             <span class="ml-3 item-text">Profile</span>

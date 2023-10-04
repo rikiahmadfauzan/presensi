@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,7 @@ class AuthController extends Controller
         return redirect('/home');
        }
     }else{
-        return redirect('/login')->withErrors('Username atau Password yang anda masukan tidak sesuai')->withInput();
+        return redirect('/login')->with('error', 'Username atau Password yang anda masukan tidak sesuai.');
     }
 
     }
@@ -76,43 +77,123 @@ class AuthController extends Controller
         return redirect('/pegawai')->with('success', 'Berhasil menambahkan data');
     }
 
+    //  function update(Request $req){
+
+    //    User::where('id', $req->id)->update([
+    //         'id' => $req->id,
+    //         'name' => $req->name,
+    //         // 'foto_profile' => $req->foto_profile,
+    //         // 'email' => $req->email,
+    //         'password' => bcrypt($req->password)
+
+    //     ]);
+
+
+    //     return redirect('/profil')->with('success', 'Berhasil update profile.');
+    //  }
      function update(Request $req){
-
-        User::where('id', $req->id)->update([
+        $nik = Auth::user()->nik;
+        $pw = Auth::user()->password;
+        $name = $req->name;
+        $password = Hash::make($req->password);
+        $user = DB::table('users')->where('nik', $nik)->first();
+        // $pw = $user->password;
+        if($req->hasFile('foto_profile')){
+            $foto_profile = $nik ."." . $req->file('foto_profile')->getClientOriginalExtension();
+        }else{
+            $foto_profile = $user->foto_profile;
+            // $password = $user->password;
+        }
+        if(empty($req->password)){
+            $data = [
             'id' => $req->id,
-            'name' => $req->name,
-            // 'email' => $req->email,
-            'password' => bcrypt($req->password)
+            'name' => $name,
+            'foto_profile' => $foto_profile,
+            // 'password' => bcrypt($pw)
 
-        ]);
-        return redirect('/profil')->with('success', 'Berhasil update profile.');
+
+            ];
+        }else{
+            $data = [
+                'id' => $req->id,
+                'name' => $name,
+                'password' => $password,
+                'foto_profile' => $foto_profile
+            ];
+        }
+        $update = DB::table('users')->where('nik', $nik)->update($data);
+        if($update){
+            if($req->hasFile('foto_profile')){
+                $folderPath = "public/uploads/foto_profile/";
+                $req->file('foto_profile')->storeAs($folderPath, $foto_profile);
+            }
+            return redirect('/profil')->with('success', 'Berhasil update profile.');
+
+        }else{
+            return redirect('/profil')->with('error', 'Gagal update profile.');
+
+        }
+
      }
      function updateAdmin(Request $req){
-    // if($req->file('foto_profile')){
-        //                 $user = User::where('id',$req->id)->first();
-        //                 Storage::delete($user->foto_profile);
-
-        //             $file = $req->file('foto_profile')->store('foto_profile');
-        //         }else{
-        //             $file = DB::raw('foto_profile');
-        //         }
-        User::where('id', $req->id)->update([
+        $nik = Auth::user()->nik;
+        $name = $req->name;
+        $password = Hash::make($req->password);
+        $user = DB::table('users')->where('nik', $nik)->first();
+        if($req->hasFile('foto_profile')){
+            $foto_profile = $nik ."." . $req->file('foto_profile')->getClientOriginalExtension();
+        }else{
+            $foto_profile= $user->foto_profile;
+        }
+        if(empty($req->password)){
+            $data = [
             'id' => $req->id,
-            'name' => $req->name,
-            'email' => $req->email,
-            'password' => bcrypt($req->password)
+            'name' => $name,
+            // 'password' => $password,
+            'foto_profile' => $foto_profile,
 
-        ]);
+
+            ];
+        }else{
+            $data = [
+                'id' => $req->id,
+                'name' => $name,
+                'password' => $password,
+                'foto_profile' => $foto_profile
+            ];
+        }
+        $update = DB::table('users')->where('nik', $nik)->update($data);
+        if($update){
+            if($req->hasFile('foto_profile')){
+                $folderPath = "public/uploads/foto_profile/";
+                $req->file('foto_profile')->storeAs($folderPath, $foto_profile);
+            }
         return redirect('/profil-admin')->with('success', 'Berhasil update profile.');
+
+        }else{
+            return redirect('/profil-admin')->with('error', 'Gagal update profile.');
+
+        }
+
      }
+    //  function updateAdmin(Request $req){
+    //     User::where('id', $req->id)->update([
+    //         'id' => $req->id,
+    //         'name' => $req->name,
+    //         'email' => $req->email,
+    //         'password' => bcrypt($req->password)
+
+    //     ]);
+    //     return redirect('/profil-admin')->with('success', 'Berhasil update profile.');
+    //  }
      function updatePegawai(Request $req){
 
         User::where('id', $req->id)->update([
             'id' => $req->id,
+            'nik' => $req->nik,
             'name' => $req->name,
             'email' => $req->email,
-            // 'foto_profile' => $file,
-            // 'password' => bcrypt($req->password)
+            // 'password' => bcrypt($req->nik)
 
         ]);
         return redirect('/pegawai')->with('success', 'Berhasil update data pegawai.');

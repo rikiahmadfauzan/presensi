@@ -16,12 +16,26 @@
                                         @if (Session::get('success'))
                                             <div class="alert alert-success">{{ Session::get('success') }}</div>
                                         @endif
+                                        @if (Session::get('error'))
+                                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                                        @endif
                                         <div class="card mb-3 shadow" style="border-radius: .5rem;">
                                             <div class="row g-0">
                                                 <div class="col-md-4 gradient-custom text-center text-white"
                                                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                                    <img src="{{ asset('dashboard') }}/assets/images/profil.png"
-                                                        alt="Avatar" class="img-fluid my-5" style="width: 80px;" /><br />
+                                                    @if (!empty(Auth::user()->foto_profile))
+                                                        @php
+                                                            $path = Storage::url('uploads/foto_profile/' . Auth::user()->foto_profile);
+                                                        @endphp
+                                                        <img src="{{ url($path) }}"
+                                                            alt="Avatar" class="img-fluid my-5 rounded-circle"
+                                                            style="width: 70%; height:45%;" /><br />
+                                                    @else
+                                                        <img src="{{ asset('dashboard') }}/assets/images/profil.png"
+                                                            alt="Avatar" class="img-fluid my-5"
+                                                            style="width: 80px;" /><br />
+                                                    @endif
+
                                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                                         data-target="#eventModal"><span
                                                             class="fe fe-edit fe-12 mr-2"></span>Edit</button>
@@ -64,7 +78,23 @@
                                                                             <input type="password" class="form-control"
                                                                                 id="eventTitle"
                                                                                 placeholder="Masukan password baru"
-                                                                                name="password">
+                                                                                name="password"
+                                                                                {{-- value="{{ Auth::user()->password }}" --}}
+                                                                                >
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label">Upload Menu</label>
+                                                                                <div class="input-group col-xs-12">
+                                                                                    <input type="text"
+                                                                                        class="form-control file-upload-info"
+                                                                                        disabled placeholder="Upload Image">
+                                                                                    <span class="input-group-append">
+                                                                                        <input type="file"
+                                                                                            name="foto_profile" id="foto_profile"
+                                                                                            width="" height=""
+                                                                                            class="form-control">
+                                                                                    </span>
+                                                                                </div>
                                                                         </div>
                                                                 </div>
                                                                 <div class="modal-footer d-flex justify-content-between">

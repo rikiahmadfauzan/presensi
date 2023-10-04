@@ -36,8 +36,10 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
         .nav-link.active {
-            background-color: #e9ecef;
+            background-color: #387aff;
+
             border-radius: 0.25rem;
+
         }
     </style>
 
@@ -51,20 +53,24 @@
             </button>
             <ul class="nav">
                 <li class="nav-item nav-link text-muted my-2">
-                    <h5>Welcome! {{ Auth::user()->name }}</h5>
+                    <h5>{{ Auth::user()->name }}</h5>
                 </li>
-                {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="avatar avatar-sm mt-2">
-                    <img src="{{ asset('dashboard') }}/assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
-                  </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <a class="dropdown-item" href="#">Activities</a>
-                </div>
-              </li> --}}
+                <li>
+                    <a class="nav-link  text-muted pr-0">
+                        <span class="avatar avatar-sm mt-2">
+                            @if (!empty(Auth::user()->foto_profile))
+                                @php
+                                    $path = Storage::url('uploads/foto_profile/' . Auth::user()->foto_profile);
+                                @endphp
+                                <img src="{{ url($path) }}" alt="Avatar" class="avatar-img rounded-circle">
+                            @else
+                                <img src="{{ asset('dashboard') }}/assets/images/profil.png" alt="Avatar"
+                                class="avatar-img rounded-circle">
+                            @endif
+
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
@@ -90,7 +96,7 @@
                     </a>
                 </div>
                 <ul class="navbar-nav flex-fill w-100 mb-2">
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::is('home*') ? 'active' : '' }}"">
                         <a href="/home" class="nav-link {{ Request::is('home*') ? 'active' : '' }}">
                             <i class="fe fe-home fe-16"></i>
                             <span class="ml-3 item-text">Home</span><span class="sr-only">(current)</span>
@@ -101,13 +107,13 @@
                     <span>Page</span>
                 </p>
                 <ul class="navbar-nav flex-fill w-100 mb-2">
-                    <li class="nav-item w-100">
+                    <li class="nav-item w-100 {{ Request::is('data*') ? 'active' : '' }}"">
                         <a class="nav-link {{ Request::is('data*') ? 'active' : '' }}" href="/data">
                             <i class="fe fe-check-circle fe-16"></i>
                             <span class="ml-3 item-text">Presence</span>
                         </a>
                     </li>
-                    <li class="nav-item w-100">
+                    <li class="nav-item w-100 {{ Request::is('profil*') ? 'active' : '' }}"">
                         <a class="nav-link {{ Request::is('profil*') ? 'active' : '' }}" href="/profil">
                             <i class="fe fe-user fe-16"></i>
                             <span class="ml-3 item-text">Profile</span>

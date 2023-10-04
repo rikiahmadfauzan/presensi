@@ -70,7 +70,7 @@
                         <!-- table -->
                         <div class="card shadow">
                             <div class="card-body">
-                                <table class="table table-borderless table-hover" id="example">
+                                <table class="table table-borderless" id="example">
                                     <thead>
                                         <tr>
                                             <th>

@@ -22,6 +22,7 @@ class PresensiController extends Controller
         return view('pegawai.pegawai', $data);
     }
     function profile(){
+        // $data['user'] = User::first();
         return view('pegawai.profile');
     }
     function data(){
@@ -32,8 +33,9 @@ class PresensiController extends Controller
     function showCekin(){
         $hariini = date("Y-m-d");
         $nik = Auth::user()->nik;
+        $data['presensi'] = Presensi::all();
         $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
-        return view('pegawai.checkin', compact('cek'));
+        return view('pegawai.checkin',$data ,compact('cek'));
     }
     function create(Request $request){
         $timezone = 'Asia/Jakarta';
@@ -44,13 +46,16 @@ class PresensiController extends Controller
         $name = Auth::user()->name;
         $lokasi = $request->lokasi;
 
-        $cek = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->count();
 
-        if($cek >0){
+        $cek = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->count();
+        // $absen = DB::table('presensi')->where('tgl', $tgl)->where('nik', $nik)->count();
+
+        if($cek != null){
             $ket ="out";
         }else{
             $ket = "in";
         }
+
         $image = $request->image;
         $folderPath = "public/uploads/evidence/";
         $formatName = $nik . "-" . $tgl . "-" . $ket;
@@ -58,7 +63,8 @@ class PresensiController extends Controller
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = $formatName . ".png";
         $file = $folderPath . $fileName;
-        if($cek > 0){
+
+        if($cek != null){
             $data_pulang = [
                 'jam_out' => $localtime,
                 'foto_out' => $fileName,
@@ -68,6 +74,8 @@ class PresensiController extends Controller
             if($update){
                 echo "success|Terimakasih, Hati-Hati Di Jalan|out";
                 Storage::put($file, $image_base64);
+                // if($data_pulang == 1){
+                //     echo "error|Kembali besok";
             }else{
                 echo "error|Maaf Absen Gagal|out";
             }
@@ -89,7 +97,6 @@ class PresensiController extends Controller
                 echo "error|Maaf Absen Gagal|in";
             }
         }
-
     }
 
     public function showmap(Request $request){
@@ -97,6 +104,7 @@ class PresensiController extends Controller
         $presensi = DB::table('presensi')->where('id', $id)->first();
         return view('pegawai.showmap', compact('presensi'));
     }
-   
+
 
 }
+
