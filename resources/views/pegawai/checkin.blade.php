@@ -19,10 +19,9 @@
                             @endforeach
                             @if ($cek != null)
                                 @if ($item->jam_out == null)
-                                    <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen
-                                        Keluar</button>
+                                    <button id="takeabsen" class="btn btn-sm mb-3 btn-danger col col-12">Absen Keluar</button>
                                 @else
-                                    <button class="btn btn-sm mb-3 btn-success col col-12">Silahkan Absen kembali besok!</button>
+                                    <button class="btn btn-sm mb-3 btn-success col col-12" disabled>Silahkan Absen kembali besok!</button>
                                 @endif
                             @else
                                 <button id="takeabsen" class="btn btn-sm mb-3 btn-primary col col-12">Absen Masuk</button>

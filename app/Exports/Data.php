@@ -29,8 +29,8 @@ class Data implements FromQuery, WithMapping, ShouldAutoSize, WithHeadings
             $presensi->jam_out,
             $presensi->lokasi_in,
             $presensi->lokasi_out,
-            $presensi->foto_in,
-            $presensi->foto_out,
+            // $presensi->foto_in,
+            // $presensi->foto_out,
         ];
     }
     public function headings(): array
@@ -43,8 +43,8 @@ class Data implements FromQuery, WithMapping, ShouldAutoSize, WithHeadings
             'JAM KELUAR',
             'LOKASI MASUK',
             'LOKASI KELUAR',
-            'FOTO MASUK',
-            'FOTO KELUAR',
+            // 'FOTO MASUK',
+            // 'FOTO KELUAR',
         ];
     }
 }

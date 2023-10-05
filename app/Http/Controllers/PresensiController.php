@@ -33,7 +33,7 @@ class PresensiController extends Controller
     function showCekin(){
         $hariini = date("Y-m-d");
         $nik = Auth::user()->nik;
-        $data['presensi'] = Presensi::all();
+        $data['presensi'] = Presensi::all()->where('tgl', $hariini)->where('nik', $nik);
         $cek = DB::table('presensi')->where('tgl', $hariini)->where('nik', $nik)->count();
         return view('pegawai.checkin',$data ,compact('cek'));
     }
