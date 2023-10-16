@@ -10,8 +10,8 @@
                                 <h2 class="h4 mb-0 page-title">Pegawai</h2>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-secondary" id="delete_all"><span
-                                        class="fe fe-trash fe-12 mr-2"></span>Delete</button>
+                                {{-- <button type="button" class="btn btn-secondary" id="delete_all"><span
+                                        class="fe fe-trash fe-12 mr-2"></span>Delete</button> --}}
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#eventModal"><span
                                         class="fe fe-plus-circle fe-12 mr-2"></span>Create</button>
@@ -73,9 +73,9 @@
                                 <table class="table table-borderless" id="example">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            {{-- <th>
                                                 <input type="checkbox" name="" id="select_all_id">
-                                            </th>
+                                            </th> --}}
                                             <th>Nama</th>
                                             <th>Nik</th>
                                             <th>Email</th>
@@ -85,10 +85,10 @@
                                     <tbody>
                                         @foreach ($user as $item)
                                             <tr id="employe_id{{ $item->id }}">
-                                                <td>
+                                                {{-- <td>
                                                     <input type="checkbox" name="id" id="" class="checkbox_id"
                                                         value="{{ $item->id }}">
-                                                </td>
+                                                </td> --}}
 
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->nik }}</td>
